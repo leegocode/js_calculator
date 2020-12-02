@@ -27,9 +27,9 @@
     background-color: rgba(255, 255, 255, .75);
   }
   
-  /* .calculator-grid > button:hover {
+  .calculator-grid > button:hover {
     background-color: rgba(255, 255, 255, .9);
-  } */
+  }
   
    .span-two {
     grid-column: span 2;
@@ -43,8 +43,8 @@
     justify-content: space-around;
     flex-direction: column;
     padding: 10px;
-    /* word-wrap: break-word;
-    word-break: break-all; */
+    word-wrap: break-word;
+    word-break: break-all;
   }
   
   .output .previous-operand {
