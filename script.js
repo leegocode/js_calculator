@@ -15,6 +15,7 @@ class Calculator{
 
   delete(){
 
+    this.currentOperand = this.currentOperand.toString().slice(0, -1)
   }
   
   appendNumber(number){
@@ -23,8 +24,22 @@ class Calculator{
 
   }
 
+  getNumber(number){
+      const stringNum = number.toString();
+      const integerDigits  = parseFloat(stringNum.split('.')[0]);
+      const floatNum = stringNum.split('.')[1];
+    if (isNaN(floatNum)) return ''
+    return floatNum.toLocaleString('en')
+
+  }
+
   update(){
-      this.current.innerText = this.currentOperand
+
+       this.current.innerText = this.getNumber(this.currentOperand)
+      if(this.operation != null ){
+          this.previous.innerText = `${this.previousOperand} ${this.operation}`
+      }
+      
       this.previous.innerText = this.previousOperand
   }
 
@@ -106,3 +121,9 @@ numberButtons.forEach(button => {
       calculator.update();
 
       })
+
+ 
+  deleteButton.addEventListener('click', () => {
+      calculator.delete();
+      calculator.update();
+  }) 
