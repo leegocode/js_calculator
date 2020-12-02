@@ -28,19 +28,33 @@ class Calculator{
       const stringNum = number.toString();
       const integerDigits  = parseFloat(stringNum.split('.')[0]);
       const floatNum = stringNum.split('.')[1];
-    if (isNaN(floatNum)) return ''
-    return floatNum.toLocaleString('en')
+      let integerDisplay;   
+      if (isNaN(integerDigits)) {
+        integerDisplay = '';
+    }else {
+      integerDisplay = integerDigits.toLocaleString('en', {
+        maximumFractionDigits: 0
+      })
+    }
+
+    if(floatNum != null){
+      return `${integerDisplay}.${floatNum}`
+    }else{
+      return `${integerDisplay}`
+    }
+    
 
   }
 
   update(){
-
-       this.current.innerText = this.getNumber(this.currentOperand)
+      this.current.innerText = this.getNumber(this.currentOperand)
+      
       if(this.operation != null ){
           this.previous.innerText = `${this.previousOperand} ${this.operation}`
+      }else{
+        this.previous.innerText = this.previousOperand
       }
-      
-      this.previous.innerText = this.previousOperand
+       
   }
 
   chooseOperation(operation){
@@ -127,3 +141,9 @@ numberButtons.forEach(button => {
       calculator.delete();
       calculator.update();
   }) 
+
+  allClearButton.addEventListener('click', button => {
+    calculator.clear();
+    calculator.update();
+
+    })
